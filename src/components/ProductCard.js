@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Usamos Link para navegación
 
 function ProductCard({ product }) {
   return (
@@ -11,7 +12,10 @@ function ProductCard({ product }) {
           <p className="card-text">
             <strong>{product.price}</strong>
           </p>
-          <button className="btn btn-primary">Ver más</button>
+          {/* Botón que redirige al detalle del producto */}
+          <Link to={`/products/${product.id}`} className="btn btn-primary">
+            Ver más
+          </Link>
         </div>
       </div>
     </div>
@@ -19,4 +23,3 @@ function ProductCard({ product }) {
 }
 
 export default ProductCard;
-
