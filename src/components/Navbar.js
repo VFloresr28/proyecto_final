@@ -4,7 +4,9 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <a className="navbar-brand" href="/">Logo</a>
+        <a className="navbar-brand" href="/">
+          Logo
+        </a>
         <button
           className="navbar-toggler"
           type="button"
@@ -19,7 +21,9 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/products">Productos</a>
+              <a className="nav-link" href="/products">
+                Productos
+              </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/login">
@@ -28,7 +32,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/create-user">
-              <i className="fa-solid fa-user-plus"></i>
+                <i className="fa-solid fa-user-plus"></i>
               </a>
             </li>
           </ul>
