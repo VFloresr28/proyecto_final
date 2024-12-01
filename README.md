@@ -1,10 +1,10 @@
-#Proyecto Final Hito 2 FrontEnd.
+# Proyecto Final Hito 2 FrontEnd.
 
-#Descripcion:
+# Descripcion:
 
 Proyecto de Marketplace para el bootcamp de Desafío Latam. Solo la sección de FrontEnd
 
-#Secciones de la pagina:
+# Secciones de la pagina:
 
 *Pagina Principal.
 *Creacion de Usuario.
