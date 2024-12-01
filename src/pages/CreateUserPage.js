@@ -3,20 +3,18 @@ import React, { useState } from "react";
 function CreateUserPage() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState(""); // Nuevo estado para el teléfono
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validación básica
     if (password !== confirmPassword) {
       alert("Las contraseñas no coinciden");
       return;
     }
 
-    // Aquí podrías enviar los datos al backend
     console.log("Nombre de usuario:", username);
     console.log("Email:", email);
     console.log("Teléfono:", phone);
@@ -57,12 +55,11 @@ function CreateUserPage() {
             </div>
             <div className="mb-3">
               {" "}
-              {/* Nuevo campo para el teléfono */}
               <label htmlFor="phone" className="form-label">
                 Teléfono
               </label>
               <input
-                type="tel" // Usa "tel" como tipo de entrada
+                type="tel"
                 id="phone"
                 className="form-control"
                 value={phone}
