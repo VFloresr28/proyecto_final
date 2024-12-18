@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  const token = localStorage.getItem("token"); // Verificar si hay un token
+  const token = localStorage.getItem("token");
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light navbar-custom">
       <div className="container">
         <a className="navbar-brand" href="/">
           Logo

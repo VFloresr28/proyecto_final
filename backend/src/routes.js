@@ -13,6 +13,7 @@ router.get('/user/:id', authenticateToken, userController.getUserById);
 router.put('/user/:id', authenticateToken, userController.updateUser);
 
 router.get('/posts', postController.getAllPosts);
+router.get('/posts/:id', postController.getPostById);
 router.post('/posts', authenticateToken, postController.createPost);
 
 module.exports = router;

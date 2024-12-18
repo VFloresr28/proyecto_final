@@ -11,8 +11,14 @@ const updateUser = `
   RETURNING *`;
 
 const getAllPosts = `
-  SELECT titulo, description, precio, userid, imagen_url
+  SELECT id, titulo, description, precio, userid, imagen_url
   FROM posts;
+`;
+
+const getPostById = `
+  SELECT id, titulo, description, precio, userid, imagen_url
+  FROM posts
+  WHERE id = $1;
 `;
 
 const createPost = `
@@ -27,5 +33,6 @@ module.exports = {
   createUser,
   updateUser,
   getAllPosts,
-  createPost
+  getPostById,
+  createPost,
 };

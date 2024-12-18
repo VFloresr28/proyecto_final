@@ -9,6 +9,21 @@ const getAllPosts = async (req, res) => {
   }
 };
 
+const getPostById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const post = await postService.getPostById(id);
+    if (!post) {
+      return res.status(404).json({ error: 'Post no encontrado' });
+    }
+    res.json(post);
+  } catch (error) {
+    console.error('Error obteniendo el post por ID:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 const createPost = async (req, res) => {
   const { titulo, description, precio, userid, imagen_url } = req.body;
 
@@ -25,4 +40,4 @@ const createPost = async (req, res) => {
   }
 };
 
-module.exports = { getAllPosts, createPost };
+module.exports = { getAllPosts, getPostById, createPost };

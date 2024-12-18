@@ -23,6 +23,11 @@ const createPost = async (titulo, description, precio, userid, imagen_url) => {
 const getAllPosts = async () => {
   try {
     const { rows: posts } = await pool.query(queries.getAllPosts);
+
+    if (posts.length === 0) {
+      console.warn('No se encontraron posts');
+    }
+
     return posts;
   } catch (error) {
     console.error('Error obteniendo los posts:', error.message);
@@ -30,4 +35,22 @@ const getAllPosts = async () => {
   }
 };
 
-module.exports = { createPost, getAllPosts };
+const getPostById = async (id) => {
+  try {
+    const { rows: post } = await pool.query(
+      "SELECT id, titulo, description, precio, userid, imagen_url FROM posts WHERE id = $1",
+      [id]
+    );
+
+    if (post.length === 0) {
+      throw new Error("Post no encontrado");
+    }
+
+    return post[0];
+  } catch (error) {
+    console.error("Error obteniendo el post por ID:", error.message);
+    throw new Error("Error obteniendo el post por ID: " + error.message);
+  }
+};
+
+module.exports = { createPost, getAllPosts, getPostById };

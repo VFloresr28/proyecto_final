@@ -8,8 +8,7 @@ function ProfilePage() {
   const [isCreatingPost, setIsCreatingPost] = useState(false);
   const token = localStorage.getItem("token");
 
-  // Verifica si el token existe y lo imprime
-  console.log("Token enviado:", token); // Este es el lugar correcto para imprimir el token
+  console.log("Token enviado:", token); 
 
   const decodedToken = token ? JSON.parse(atob(token.split(".")[1])) : null;
   const userId = decodedToken ? decodedToken.id : null;
