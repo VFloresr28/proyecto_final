@@ -40,4 +40,13 @@ const createPost = async (req, res) => {
   }
 };
 
-module.exports = { getAllPosts, getPostById, createPost };
+const getRandomPosts = async (req, res) => {
+  try {
+    const posts = await postService.getRandomPosts();
+    res.json(posts);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { getAllPosts, getPostById, createPost, getRandomPosts };

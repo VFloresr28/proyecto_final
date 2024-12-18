@@ -53,4 +53,14 @@ const getPostById = async (id) => {
   }
 };
 
-module.exports = { createPost, getAllPosts, getPostById };
+const getRandomPosts = async () => {
+  try {
+    const { rows: posts } = await pool.query(queries.getRandomPosts);
+    return posts;
+  } catch (error) {
+    console.error("Error obteniendo posts aleatorios:", error.message);
+    throw new Error("Error obteniendo posts aleatorios: " + error.message);
+  }
+};
+
+module.exports = { createPost, getAllPosts, getPostById, getRandomPosts };

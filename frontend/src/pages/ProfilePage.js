@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
   const [user, setUser] = useState(null);
-  const [newPost, setNewPost] = useState({ titulo: "", descripcion: "", precio: "", imagen_url: "" });
+  const [newPost, setNewPost] = useState({ titulo: "", description: "", precio: "", imagen_url: "" });
   const [isCreatingPost, setIsCreatingPost] = useState(false);
+  const [message, setMessage] = useState(""); // Para mostrar el mensaje de éxito
   const token = localStorage.getItem("token");
 
-  console.log("Token enviado:", token); 
+  console.log("Token enviado:", token);
 
   const decodedToken = token ? JSON.parse(atob(token.split(".")[1])) : null;
   const userId = decodedToken ? decodedToken.id : null;
@@ -47,7 +48,7 @@ function ProfilePage() {
   const handleCreatePost = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:5000/api/posts",
         {
           ...newPost,
@@ -59,8 +60,13 @@ function ProfilePage() {
           },
         }
       );
-      console.log("Post creado exitosamente:", response.data);
-      navigate("/profile");
+      setMessage("Producto guardado con éxito."); // Mostrar mensaje de éxito
+      setIsCreatingPost(false); // Ocultar el formulario
+
+      // Recargar la página después de 2 segundos
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.error("Error creando la publicación:", error);
     }
@@ -84,6 +90,13 @@ function ProfilePage() {
           </div>
         </div>
       </div>
+
+      {/* Mostrar mensaje de éxito */}
+      {message && (
+        <div className="alert alert-success text-center mt-3" role="alert">
+          {message}
+        </div>
+      )}
 
       <button className="btn btn-primary mt-4" onClick={() => setIsCreatingPost(true)}>
         Crear nueva publicación

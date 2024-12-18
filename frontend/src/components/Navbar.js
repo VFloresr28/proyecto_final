@@ -7,8 +7,11 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light navbar-custom">
       <div className="container">
-        <a className="navbar-brand" href="/">
-          Logo
+      <a className="navbar-brand" href="/">
+          <img
+            src="https://i.imgur.com/0X9FjWG.png"
+            style={{ height: "70px", width: "70px" }} 
+          />
         </a>
         <button
           className="navbar-toggler"
@@ -25,11 +28,10 @@ function Navbar() {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/products">
-                Productos
+              <i class="fa-solid fa-boxes-stacked"></i> Productos
               </Link>
             </li>
             
-            {/* Si hay token, mostrar opción de Perfil */}
             {token ? (
               <>
                 <li className="nav-item">
@@ -42,15 +44,14 @@ function Navbar() {
                     className="nav-link btn"
                     onClick={() => {
                       localStorage.removeItem("token");
-                      window.location.href = "/login"; // Redirige al login
+                      window.location.href = "/login";
                     }}
                   >
-                    Logout
+                    <i class="fa-solid fa-right-from-bracket"></i>Salir
                   </button>
                 </li>
               </>
             ) : (
-              // Si no hay token, mostrar opciones de Login y Crear cuenta
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/login">

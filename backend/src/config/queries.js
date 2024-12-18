@@ -27,6 +27,13 @@ const createPost = `
   RETURNING *;
 `;
 
+const getRandomPosts = `
+  SELECT * 
+  FROM posts
+  ORDER BY RANDOM()
+  LIMIT 6;
+`;
+
 module.exports = {
   getUserByEmail,
   getUserById,
@@ -35,4 +42,5 @@ module.exports = {
   getAllPosts,
   getPostById,
   createPost,
+  getRandomPosts,
 };

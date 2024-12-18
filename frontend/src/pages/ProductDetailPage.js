@@ -44,6 +44,12 @@ function ProductDetailPage() {
           <h1>{product.titulo}</h1>
           <p>{product.description}</p>
           <h3 className="text-success">${product.precio}</h3>
+          <button className="btn btn-outline-primary">
+              <i className="fa-regular fa-heart"></i> Agregar a favoritos
+            </button>
+            <button className="btn btn-primary">
+              <i className="fa-solid fa-cart-plus"></i> Añadir al carrito
+            </button>
         </div>
       </div>
     </div>

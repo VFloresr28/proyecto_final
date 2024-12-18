@@ -1,19 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import MainPage from "./pages/MainPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductsPage from "./pages/ProductsPage";
 import LoginPage from "./pages/LoginPage";
 import CreateUserPage from "./pages/CreateUserPage";
 import ProfilePage from "./pages/ProfilePage";
+import Footer from "./components/Footer";
 
 function App() {
   const token = localStorage.getItem("token");
 
   return (
     <Router>
+      <div id="root">
       <Navbar />
       <main>
         <Routes>
@@ -31,6 +32,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      </div>
     </Router>
   );
 }

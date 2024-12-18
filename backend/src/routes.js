@@ -15,5 +15,6 @@ router.put('/user/:id', authenticateToken, userController.updateUser);
 router.get('/posts', postController.getAllPosts);
 router.get('/posts/:id', postController.getPostById);
 router.post('/posts', authenticateToken, postController.createPost);
+router.get('/posts/random', postController.getRandomPosts);
 
 module.exports = router;

@@ -9,7 +9,13 @@ function MainPage() {
     const fetchPosts = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/posts");
-        setPosts(response.data);
+        const allPosts = response.data;
+
+        // Seleccionar 6 productos aleatorios
+        const shuffledPosts = allPosts.sort(() => 0.5 - Math.random());
+        const randomPosts = shuffledPosts.slice(0, 6);
+
+        setPosts(randomPosts);
       } catch (error) {
         console.error("Error al obtener los posts:", error);
       }
