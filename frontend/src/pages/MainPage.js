@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import ProductList from "../components/ProductList";
-import products from "../data/products";
 
 function MainPage() {
-  const getRandomProducts = (items, count) => {
-    const shuffled = [...items].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count);
-  };
+  const [posts, setPosts] = useState([]);
 
-  const randomProducts = getRandomProducts(products, 6);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/posts");
+        setPosts(response.data);
+      } catch (error) {
+        console.error("Error al obtener los posts:", error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   return (
     <div>
-      <ProductList products={randomProducts} />
+      <ProductList products={posts} />
     </div>
   );
 }
 
 export default MainPage;
-
-

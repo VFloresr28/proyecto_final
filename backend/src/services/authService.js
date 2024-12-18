@@ -17,8 +17,8 @@ const register = async ({ email, nombre, celular, contrasena }) => {
     const { rows: newUser } = await pool.query(queries.createUser, [
       email,
       nombre,
-      celular, 
-      hashedPassword
+      celular,
+      hashedPassword,
     ]);
 
     return newUser[0];
@@ -29,6 +29,7 @@ const register = async ({ email, nombre, celular, contrasena }) => {
 
 const login = async (email, contrasena) => {
   try {
+
     const { rows: user } = await pool.query(queries.getUserByEmail, [email]);
     if (user.length === 0) {
       throw new Error('Credenciales inválidas');

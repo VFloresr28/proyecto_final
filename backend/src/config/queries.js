@@ -6,14 +6,15 @@ const createUser = `
   RETURNING *`;
 const updateUser = `
   UPDATE users
-  SET nombre = $2, contrasena = $4
+  SET nombre = $2, celular = $3, contrasena = $4
   WHERE id = $1
   RETURNING *`;
 
 const getAllPosts = `
-  SELECT id, titulo, description, precio, userid, created_ad, imagen_url
+  SELECT titulo, description, precio, userid, imagen_url
   FROM posts;
 `;
+
 const createPost = `
   INSERT INTO posts (titulo, description, precio, userid, imagen_url)
   VALUES ($1, $2, $3, $4, $5)

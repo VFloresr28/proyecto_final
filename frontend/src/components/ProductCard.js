@@ -6,16 +6,16 @@ function ProductCard({ product }) {
     <div className="col-md-4 mb-4">
       <div className="card h-100">
         <img
-          src={product.image}
-          alt={product.name}
+          src={product.imagen_url}
+          alt={product.titulo}
           className="card-img-top img-fluid"
           style={{ objectFit: "cover", height: "200px" }}
         />
         <div className="card-body">
-          <h5 className="card-title">{product.name}</h5>
+          <h5 className="card-title">{product.titulo}</h5>
           <p className="card-text">{product.description}</p>
           <p className="card-text">
-            <strong>{product.price}</strong>
+            <strong>${product.precio}</strong>
           </p>
           <Link to={`/products/${product.id}`} className="btn btn-primary">
             Ver más

@@ -6,9 +6,13 @@ function ProductList({ products }) {
     <div className="container my-5">
       <h2 className="text-center mb-4">Productos</h2>
       <div className="row">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {products.length > 0 ? (
+          products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        ) : (
+          <p>No hay productos disponibles</p>
+        )}
       </div>
     </div>
   );

@@ -1,35 +1,28 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      alert("Por favor, ingrese el correo electrónico y la contraseña.");
-      return;
-    }
-
-    const userCredentials = {
-      email,
-      contrasena: password,
-    };
-
     try {
-      const response = await axios.post("http://localhost:5000/api/login", userCredentials);
+      const response = await axios.post("http://localhost:5000/api/login", {
+        email,
+        contrasena: password,
+      });
 
-      const { token } = response.data;
+      localStorage.setItem("token", response.data.token);
 
-      localStorage.setItem("token", token);
-
-      alert("Login exitoso");
-
+      navigate("/profile");
     } catch (error) {
-      console.error("Error al iniciar sesión:", error.response?.data?.error || error.message);
-      alert("Error al iniciar sesión: " + (error.response?.data?.error || error.message));
+      console.error("Error al iniciar sesión:", error);
+      alert("Credenciales inválidas");
     }
   };
 

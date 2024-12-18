@@ -1,6 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
+  const token = localStorage.getItem("token"); // Verificar si hay un token
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -21,20 +24,46 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/products">
+              <Link className="nav-link" to="/products">
                 Productos
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/login">
-                <i className="fa-solid fa-user"></i>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/create-user">
-                <i className="fa-solid fa-user-plus"></i>
-              </a>
-            </li>
+            
+            {/* Si hay token, mostrar opción de Perfil */}
+            {token ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/profile">
+                    <i className="fa-solid fa-user"></i> Perfil
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <button
+                    className="nav-link btn"
+                    onClick={() => {
+                      localStorage.removeItem("token");
+                      window.location.href = "/login"; // Redirige al login
+                    }}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              // Si no hay token, mostrar opciones de Login y Crear cuenta
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    <i className="fa-solid fa-user"></i> Iniciar sesión
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/create-user">
+                    <i className="fa-solid fa-user-plus"></i> Crear cuenta
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
