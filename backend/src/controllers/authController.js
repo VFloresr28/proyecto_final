@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs'); // Cambia bcrypt por bcryptjs
 const jwt = require('jsonwebtoken');
-const userService = require('./userService'); // Asegúrate de que este archivo maneje usuarios
+const userService = require('../services/userService'); // Asegúrate de que este archivo maneje usuarios
 
 const register = async ({ email, nombre, celular, contrasena }) => {
   try {
