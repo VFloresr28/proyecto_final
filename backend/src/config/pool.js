@@ -1,20 +1,15 @@
-const { Pool } = require('pg');
+const pool = require('./pool'); // Asegúrate de que apunte correctamente al archivo pool.js
 
-// Configuración del pool para la base de datos
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // Render proporciona esta variable de entorno
-  ssl: {
-    rejectUnauthorized: false, // Render requiere SSL, pero sin verificación estricta
-  },
-});
+(async () => {
+  console.log("Verificando conexión a la base de datos...");
 
-// Log para verificar la configuración (solo en desarrollo)
-if (process.env.NODE_ENV !== "production") {
-  console.log("Configuración de conexión a la base de datos:");
-  console.log({
-    connectionString: process.env.DATABASE_URL ? "[PROPORCIONADA]" : "NO DEFINIDA",
-    ssl: process.env.NODE_ENV === "production" ? "Habilitado" : "Deshabilitado",
-  });
-}
-
-module.exports = pool;
+  try {
+    const client = await pool.connect();
+    console.log("Conexión a la base de datos exitosa 🎉");
+    client.release(); // Libera el cliente después de la prueba
+  } catch (error) {
+    console.error("Error conectando a la base de datos:", error.message);
+  } finally {
+    pool.end(); // Finaliza el pool de conexiones
+  }
+})();
