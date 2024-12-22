@@ -36,5 +36,5 @@ app.use((err, req, res, next) => {
 
 // Iniciar el servidor
 app.listen(port, () => {
-  console.log(`Servidor corriendo en el puerto ${port}`);
+  console.log(Servidor corriendo en el puerto ${port});
 });
