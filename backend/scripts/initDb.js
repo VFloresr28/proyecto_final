@@ -1,5 +1,5 @@
 const { Pool } = require("pg");
-require("dotenv").config();
+require("dotenv").config({ path: "../.env" }); // Ajusta la ruta al archivo .env
 
 // Mostrar las variables de entorno para depuración (opcional)
 console.log("Configuración de la base de datos:", {
