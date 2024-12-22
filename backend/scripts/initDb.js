@@ -1,13 +1,22 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
+// Mostrar las variables de entorno para depuración (opcional)
+console.log("Configuración de la base de datos:", {
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD ? "[OCULTO]" : "NO DEFINIDO",
+  database: process.env.DATABASE,
+  port: process.env.PORT,
+});
+
 // Conexión a la base de datos usando las variables de entorno
 const pool = new Pool({
   host: process.env.HOST,
   user: process.env.USER,
-  password: process.env.PASSWORD,
+  password: String(process.env.PASSWORD), // Asegúrate de que la contraseña sea tratada como texto
   database: process.env.DATABASE,
-  port: process.env.PORT,
+  port: parseInt(process.env.PORT, 10), // Asegúrate de convertir el puerto a número
 });
 
 const createTables = async () => {
