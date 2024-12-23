@@ -25,7 +25,7 @@ function CreateUserPage() {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/api/register", newUser);
+      const response = await axios.post("https://proyecto-final-11.onrender.com/api/register", newUser);
       console.log("Usuario creado:", response.data);
       alert("Usuario creado exitosamente");
     } catch (error) {

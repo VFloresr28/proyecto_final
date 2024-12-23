@@ -10,7 +10,7 @@ function ProductDetailPage() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/posts/${id}`);
+        const response = await axios.get(`https://proyecto-final-11.onrender.com/api/posts/${id}`);
         setProduct(response.data);
         setLoading(false);
       } catch (error) {

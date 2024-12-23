@@ -23,7 +23,7 @@ function ProfilePage() {
 
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/user/${userId}`, {
+        const response = await axios.get(`https://proyecto-final-11.onrender.com/api/user/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -49,7 +49,7 @@ function ProfilePage() {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:5000/api/posts",
+        "https://proyecto-final-11.onrender.com/api/posts",
         {
           ...newPost,
           userid: userId,

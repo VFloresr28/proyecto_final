@@ -9,7 +9,7 @@ function ProductsPage() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/posts", {
+        const response = await axios.get("https://proyecto-final-11.onrender.com/api/posts", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
