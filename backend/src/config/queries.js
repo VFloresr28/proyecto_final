@@ -1,14 +1,27 @@
-const getUserByEmail = 'SELECT * FROM users WHERE email = $1';
-const getUserById = 'SELECT * FROM users WHERE id = $1';
+const getUserByEmail = `
+  SELECT * 
+  FROM users 
+  WHERE email = $1;
+`;
+
+const getUserById = `
+  SELECT * 
+  FROM users 
+  WHERE id = $1;
+`;
+
 const createUser = `
   INSERT INTO users (email, nombre, celular, contrasena)
   VALUES ($1, $2, $3, $4)
-  RETURNING *`;
+  RETURNING *;
+`;
+
 const updateUser = `
   UPDATE users
   SET nombre = $2, celular = $3, contrasena = $4
   WHERE id = $1
-  RETURNING *`;
+  RETURNING *;
+`;
 
 const getAllPosts = `
   SELECT id, titulo, description, precio, userid, imagen_url

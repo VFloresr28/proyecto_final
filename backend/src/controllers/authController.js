@@ -1,42 +1,24 @@
-const bcrypt = require('bcryptjs'); // Cambia bcrypt por bcryptjs
-const jwt = require('jsonwebtoken');
-const userService = require('../services/userService'); // Asegúrate de que este archivo maneje usuarios
+const authService = require('../services/authService');
 
-const register = async ({ email, nombre, celular, contrasena }) => {
+const register = async (req, res) => {
+  const { email, nombre, celular, contrasena } = req.body;
   try {
-    // Encriptar contraseña
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(contrasena, saltRounds);
-
-    // Crear nuevo usuario
-    const newUser = await userService.createUser(email, hashedPassword, nombre, celular);
-    return newUser;
+    const newUser = await authService.register({ email, nombre, celular, contrasena });
+    res.status(201).json(newUser);
   } catch (error) {
     console.error('Error en registro:', error.message);
-    throw new Error('No se pudo registrar el usuario');
+    res.status(400).json({ error: error.message });
   }
 };
 
-const login = async (email, contrasena) => {
+const login = async (req, res) => {
+  const { email, contrasena } = req.body;
   try {
-    // Buscar usuario por email
-    const user = await userService.getUserByEmail(email);
-    if (!user) {
-      throw new Error('Usuario no encontrado');
-    }
-
-    // Comparar contraseñas
-    const isMatch = await bcrypt.compare(contrasena, user.contrasena);
-    if (!isMatch) {
-      throw new Error('Contraseña incorrecta');
-    }
-
-    // Generar token JWT
-    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    return { token, user };
+    const { token, user } = await authService.login(email, contrasena);
+    res.status(200).json({ token, user });
   } catch (error) {
     console.error('Error en login:', error.message);
-    throw new Error('Error en las credenciales');
+    res.status(401).json({ error: error.message });
   }
 };
 
